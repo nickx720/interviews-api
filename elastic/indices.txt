@@ -66,3 +66,28 @@ PUT _template/sessions_index_template
     }
   }
 }
+
+PUT _template/questionresult_index_template
+{
+  "index_patterns": [
+    "*questionresult"
+  ],
+  "settings": {
+    "number_of_shards": 5
+  },
+  "mappings": {
+    "_doc": {
+      "dynamic_templates": [
+        {
+          "text": {
+            "match_mapping_type": "string",
+            "match": "*",
+            "mapping": {
+              "type": "keyword"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
